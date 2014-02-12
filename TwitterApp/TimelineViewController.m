@@ -167,6 +167,8 @@
     if ([TWTweetComposeViewController canSendTweet]) {
         TWTweetComposeViewController *composeViewController = [[TWTweetComposeViewController alloc] init];
         [self presentModalViewController:composeViewController animated:YES];
+        
+        
     }
 }
 
