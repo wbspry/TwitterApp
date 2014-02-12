@@ -1,1 +1,6 @@
 *.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcworkspace/contents.xcworkspacedata
+.DS_Store
+
+#参考：http://moomindani.wordpress.com/2012/08/05/xcode%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E7%94%A8%E3%81%AE-gitignore%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B/
