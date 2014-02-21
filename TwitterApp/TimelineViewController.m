@@ -30,6 +30,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    
+    [refreshControl addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
+    
+    self.refreshControl = refreshControl;
+    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -38,7 +45,11 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     
-    
+    [self loadTweets];
+
+}
+
+-(void)loadTweets{
     ACAccountStore *accountStore = [[ACAccountStore alloc]init];
     ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     [accountStore requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
@@ -70,6 +81,8 @@
         }
     }];
 }
+    
+    
 
 - (void)didReceiveMemoryWarning
 {
@@ -188,4 +201,14 @@
     }
 }
 
+
+- (void)onRefresh:(id)sender{
+    [self.refreshControl beginRefreshing];
+    
+    [self loadTweets];
+    
+    [self.refreshControl endRefreshing];
+}
+
 @end
+
