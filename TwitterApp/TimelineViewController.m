@@ -177,14 +177,19 @@
  */
 
 - (IBAction)pressComposeButton:(id)sender {
-    if ([TWTweetComposeViewController canSendTweet]) {
-        TWTweetComposeViewController *composeViewController = [[TWTweetComposeViewController alloc] init];
-        [self presentModalViewController:composeViewController animated:YES];
-        
-        
+    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]){
+        SLComposeViewController *twitter = [[SLComposeViewController alloc]init];
+        twitter = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [twitter setInitialText:[NSString stringWithFormat:@"デフォルトにしたツイートが入るよ！！"]];
+        [self presentViewController:twitter animated:YES completion:NULL];
     }
+//    if ([TWTweetComposeViewController canSendTweet]) {
+//        TWTweetComposeViewController *composeViewController = [[TWTweetComposeViewController alloc] init];
+//        [self presentModalViewController:composeViewController animated:YES];
+//        
+//        
+//    }
 }
-
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier] isEqualToString:@"selectRow"]){
